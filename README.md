@@ -1,6 +1,6 @@
-# 📄 Generative AI-Powered Job Recommender System
+# 📄 AI-Powered Job Recommender System
 
-An intelligent job recommendation system that leverages OpenAI's GPT-4o to analyze resumes, identify skill gaps, and recommend relevant job opportunities from LinkedIn and Naukri job portals.
+An intelligent job recommendation system that leverages Groq's LLaMA AI model to analyze resumes, identify skill gaps, and recommend relevant job opportunities from multiple job portals including RemoteOK, Adzuna, and Naukri.
 
 ## 🌟 Features
 
@@ -8,7 +8,7 @@ An intelligent job recommendation system that leverages OpenAI's GPT-4o to analy
 
 - Extract text from PDF resumes using PyMuPDF
 - Generate intelligent resume summaries highlighting key skills, education, and experience
-- AI-powered analysis using OpenAI GPT-4o
+- AI-powered analysis using Groq LLaMA 3.3 70B model
 
 ### 2. **Skill Gap Analysis**
 
@@ -26,9 +26,10 @@ An intelligent job recommendation system that leverages OpenAI's GPT-4o to analy
 ### 4. **Job Recommendations**
 
 - Automatic extraction of relevant job search keywords from resume
-- Fetch job listings from LinkedIn (up to 60 jobs)
-- Fetch job listings from Naukri.com (India-focused, up to 60 jobs)
-- Display job titles, company names, locations, and direct application links
+- Fetch remote job listings from RemoteOK (up to 30 jobs, no API key required)
+- Fetch job listings from Adzuna API (India-focused, up to 30 jobs, free tier available)
+- Fetch job listings from Naukri.com via Apify (up to 60 jobs)
+- Display job titles, company names, locations, tags, and direct application links
 
 ### 5. **MCP Server Integration**
 
@@ -39,17 +40,21 @@ An intelligent job recommendation system that leverages OpenAI's GPT-4o to analy
 ## 🛠️ Technology Stack
 
 - **Frontend**: Streamlit (Interactive web interface)
-- **AI/ML**: OpenAI GPT-4o API
+- **AI/ML**: Groq LLaMA 3.3 70B Model
 - **PDF Processing**: PyMuPDF (fitz)
-- **Job APIs**: Apify Client (for LinkedIn and Naukri job scraping)
+- **Job APIs**: 
+  - RemoteOK API (Free, no authentication required)
+  - Adzuna API (Free tier available)
+  - Apify Client (for Naukri job scraping)
 - **Server**: FastMCP (Model Context Protocol)
 - **Environment Management**: python-dotenv
 
 ## 📋 Prerequisites
 
-- Python 3.13 or higher
-- OpenAI API Key
-- Apify API Token
+- Python 3.11 or higher
+- Groq API Key (Free tier available)
+- Apify API Token (Optional, for Naukri jobs)
+- Adzuna API Credentials (Optional, for Adzuna jobs)
 
 ## 🚀 Installation
 
@@ -77,8 +82,15 @@ pip install -e .
 Create a `.env` file in the root directory and add your API keys:
 
 ```env
-OPENAI_API_KEY=your_openai_api_key_here
+# Required: Groq API Key (Get from https://console.groq.com/)
+GROQ_API_KEY=your_groq_api_key_here
+
+# Optional: Apify API Token (Get from https://console.apify.com/)
 APIFY_API_TOKEN=your_apify_api_token_here
+
+# Optional: Adzuna API (Get from https://developer.adzuna.com/)
+ADZUNA_APP_ID=your_adzuna_app_id_here
+ADZUNA_APP_KEY=your_adzuna_app_key_here
 ```
 
 ## 📖 Usage
@@ -95,7 +107,11 @@ This will launch the web interface where you can:
 2. View AI-generated resume summary
 3. See identified skill gaps
 4. Get a personalized career roadmap
-5. Click "Get Job Recommendations" to fetch relevant jobs
+5. Click "Get Job Recommendations" to fetch relevant jobs from multiple sources
+
+**Note**: 
+- RemoteOK jobs work without any API key
+- Adzuna and Naukri jobs require respective API credentials in `.env` file
 
 ### Running the MCP Server
 

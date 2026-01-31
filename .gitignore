@@ -7,5 +7,10 @@ wheels/
 *.egg-info
 
 # Virtual environments
+venv/
 .venv
 .env
+
+# Temporary files
+requirements_new.txt
+.DS_Store
