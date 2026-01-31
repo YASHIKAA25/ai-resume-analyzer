@@ -445,12 +445,15 @@ if uploaded_file:
                         if job['tags']:
                             job_html += f"<p><strong>🏷️ Tags:</strong> {job['tags']}</p>"
                         
-                        job_html += f"""
+                        # Only add apply button if URL exists and is not empty
+                        if job.get('url') and job['url'].strip():
+                            job_html += f"""
                             <a href="{job['url']}" target="_blank" class="apply-button">
                                 Apply Now →
                             </a>
-                        </div>
                         """
+                        
+                        job_html += "</div>"
                         
                         st.markdown(job_html, unsafe_allow_html=True)
                 else:
