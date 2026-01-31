@@ -39,24 +39,56 @@ st.markdown("""
         margin: 10px 0;
     }
     .job-card {
-        background-color: #ffffff;
-        padding: 20px;
-        border-radius: 10px;
-        border: 1px solid #dee2e6;
-        margin: 10px 0;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        padding: 25px;
+        border-radius: 15px;
+        border: none;
+        margin: 15px 0;
+        box-shadow: 0 8px 16px rgba(102, 126, 234, 0.3);
+        color: white;
+    }
+    .job-card h4 {
+        color: white;
+        margin-bottom: 15px;
+        font-size: 1.3rem;
+    }
+    .job-card p {
+        color: #f8f9fa;
+        margin: 8px 0;
     }
     .match-score-high {
-        color: #28a745;
+        color: #90EE90;
         font-weight: bold;
+        font-size: 1.1rem;
     }
     .match-score-medium {
-        color: #ffc107;
+        color: #FFD700;
         font-weight: bold;
+        font-size: 1.1rem;
     }
     .match-score-low {
-        color: #dc3545;
+        color: #FF6B6B;
         font-weight: bold;
+        font-size: 1.1rem;
+    }
+    .apply-button {
+        background-color: white;
+        color: #667eea;
+        padding: 12px 30px;
+        border: none;
+        border-radius: 25px;
+        cursor: pointer;
+        font-weight: bold;
+        font-size: 1rem;
+        margin-top: 15px;
+        transition: all 0.3s ease;
+        display: inline-block;
+        text-decoration: none;
+    }
+    .apply-button:hover {
+        background-color: #f0f0f0;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
     }
     .stTabs [data-baseweb="tab-list"] {
         gap: 24px;
@@ -399,7 +431,8 @@ if uploaded_file:
                         # Get salary estimate
                         salary = estimate_salary_range(job['title'])
                         
-                        st.markdown(f"""
+                        # Display job card with proper HTML rendering
+                        job_html = f"""
                         <div class="job-card">
                             <h4>{idx}. {job['title']}</h4>
                             <p><strong>🏢 Company:</strong> {job['company']}</p>
@@ -407,14 +440,19 @@ if uploaded_file:
                             <p><strong>🌐 Source:</strong> {job['source']}</p>
                             <p><strong>💰 Est. Salary:</strong> {salary['min']} - {salary['max']} (Avg: {salary['avg']})</p>
                             <p>{score_emoji} <span class="{score_class}">Match Score: {job['match_score']}%</span></p>
-                            {f"<p><strong>🏷️ Tags:</strong> {job['tags']}</p>" if job['tags'] else ""}
-                            <a href="{job['url']}" target="_blank" style="text-decoration: none;">
-                                <button style="background-color: #667eea; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">
-                                    Apply Now →
-                                </button>
+                        """
+                        
+                        if job['tags']:
+                            job_html += f"<p><strong>🏷️ Tags:</strong> {job['tags']}</p>"
+                        
+                        job_html += f"""
+                            <a href="{job['url']}" target="_blank" class="apply-button">
+                                Apply Now →
                             </a>
                         </div>
-                        """, unsafe_allow_html=True)
+                        """
+                        
+                        st.markdown(job_html, unsafe_allow_html=True)
                 else:
                     st.warning("No jobs found. Try updating your resume with more keywords.")
     
