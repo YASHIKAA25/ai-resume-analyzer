@@ -263,7 +263,7 @@ if uploaded_file:
                 }
             ))
             fig.update_layout(height=300)
-            st.plotly_chart(fig, use_container_width=True)
+            st.plotly_chart(fig, width='stretch')
             
             st.markdown(f"**Grade: {data['ats_score']['grade']}**")
         
@@ -283,7 +283,7 @@ if uploaded_file:
             color_continuous_scale='Blues'
         )
         fig_bar.update_layout(height=300, showlegend=False)
-        st.plotly_chart(fig_bar, use_container_width=True)
+        st.plotly_chart(fig_bar, width='stretch')
     
     # Tab 2: Skills Analysis
     with tab2:
@@ -321,7 +321,7 @@ if uploaded_file:
             names='Category',
             color_discrete_sequence=['#667eea', '#764ba2']
         )
-        st.plotly_chart(fig_pie, use_container_width=True)
+        st.plotly_chart(fig_pie, width='stretch')
     
     # Tab 3: Gaps & Roadmap
     with tab3:
@@ -337,7 +337,7 @@ if uploaded_file:
     
     # Tab 4: Job Recommendations
     with tab4:
-        if st.button("🔍 Find Matching Jobs", type="primary", use_container_width=True):
+        if st.button("🔍 Find Matching Jobs", type="primary", width='stretch'):
             with st.spinner("Fetching personalized job recommendations..."):
                 # Get job keywords
                 keywords = ask_openai(
@@ -496,7 +496,7 @@ if uploaded_file:
         st.markdown("### 📄 Download Comprehensive Analysis Report")
         st.info("Generate a detailed PDF report with all your resume analysis, scores, and recommendations.")
         
-        if st.button("📥 Generate PDF Report", type="primary", use_container_width=True):
+        if st.button("📥 Generate PDF Report", type="primary", width='stretch'):
             with st.spinner("Generating your comprehensive report..."):
                 try:
                     pdf_path = generate_resume_report(
@@ -519,7 +519,7 @@ if uploaded_file:
                         data=pdf_bytes,
                         file_name="resume_analysis_report.pdf",
                         mime="application/pdf",
-                        use_container_width=True
+                        width='stretch'
                     )
                     
                     # Clean up
