@@ -1,51 +1,100 @@
-# 📄 AI-Powered Job Recommender System
+# 📄 AI-Powered Resume Analyzer & Job Recommender System
 
-An intelligent job recommendation system that leverages Groq's LLaMA AI model to analyze resumes, identify skill gaps, and recommend relevant job opportunities from multiple job portals including RemoteOK, Adzuna, and Naukri.
+An advanced, intelligent job recommendation system that leverages Groq's LLaMA AI model to provide comprehensive resume analysis, ATS scoring, skill gap identification, and personalized job recommendations from multiple job portals.
 
-## 🌟 Features
+## 🌟 Key Features
 
-### 1. **Resume Analysis**
+### 1. **📊 ATS Score Analysis**
+
+- Calculate comprehensive ATS (Applicant Tracking System) compatibility score
+- Detailed breakdown of scoring criteria (contact info, sections, dates, action verbs, etc.)
+- Visual gauge chart showing your resume's ATS performance
+- Letter grade system (A+ to D) for quick assessment
+
+### 2. **💡 Advanced Skill Analysis**
+
+- Automatic extraction of technical and soft skills
+- Skill categorization and tagging
+- Visual analytics with pie charts and distributions
+- Comparison with industry standards
+
+### 3. **🎯 Smart Job Matching**
+
+- AI-powered job-resume matching algorithm
+- Match score calculation (0-100%) for each job
+- Color-coded indicators (Green: High match, Yellow: Medium, Red: Low)
+- Sort jobs by relevance to your profile
+
+### 4. **💰 Salary Insights**
+
+- Estimated salary ranges based on job title and location
+- India-specific salary data (LPA format)
+- Min, Max, and Average salary information
+- Role-based compensation insights
+
+### 5. **📚 Interview Preparation**
+
+- Role-specific interview preparation tips
+- Technical and behavioral question guidelines
+- STAR method recommendations
+- Company research strategies
+
+### 6. **📄 Comprehensive PDF Reports**
+
+- Downloadable PDF analysis reports
+- Professional formatting with charts and breakdowns
+- Complete resume analysis summary
+- Career roadmap and recommendations
+- Interview tips and action items
+
+### 7. **Resume Analysis**
 
 - Extract text from PDF resumes using PyMuPDF
 - Generate intelligent resume summaries highlighting key skills, education, and experience
 - AI-powered analysis using Groq LLaMA 3.3 70B model
 
-### 2. **Skill Gap Analysis**
+### 8. **Skill Gap Analysis**
 
 - Identify missing skills and certifications
 - Highlight areas for improvement
 - Provide actionable recommendations for career advancement
 
-### 3. **Career Roadmap Generation**
+### 9. **Career Roadmap Generation**
 
 - Personalized career development suggestions
 - Certification recommendations
 - Skills to learn for better job prospects
 - Industry exposure guidance
 
-### 4. **Job Recommendations**
+### 10. **Multi-Source Job Recommendations**
 
 - Automatic extraction of relevant job search keywords from resume
 - Fetch remote job listings from RemoteOK (up to 30 jobs, no API key required)
 - Fetch job listings from Adzuna API (India-focused, up to 30 jobs, free tier available)
 - Fetch job listings from Naukri.com via Apify (up to 60 jobs)
 - Display job titles, company names, locations, tags, and direct application links
+- Smart job-resume matching with percentage scores
 
-### 5. **MCP Server Integration**
+### 11. **Beautiful UI/UX**
 
-- FastMCP server implementation for programmatic access
-- RESTful tools for fetching LinkedIn and Naukri jobs
-- Async support for efficient job fetching
+- Modern gradient design with custom CSS styling
+- Tab-based navigation for organized content
+- Sidebar with quick feature overview
+- Responsive metric cards and visualizations
+- Interactive Plotly charts and graphs
 
 ## 🛠️ Technology Stack
 
-- **Frontend**: Streamlit (Interactive web interface)
+- **Frontend**: Streamlit (Interactive web interface with custom CSS)
 - **AI/ML**: Groq LLaMA 3.3 70B Model
 - **PDF Processing**: PyMuPDF (fitz)
-- **Job APIs**: 
+- **Visualization**: Plotly, Matplotlib, Altair
+- **PDF Generation**: FPDF2, ReportLab
+- **Job APIs**:
   - RemoteOK API (Free, no authentication required)
   - Adzuna API (Free tier available)
   - Apify Client (for Naukri job scraping)
+- **Data Processing**: Pandas, NumPy
 - **Server**: FastMCP (Model Context Protocol)
 - **Environment Management**: python-dotenv
 
@@ -109,7 +158,8 @@ This will launch the web interface where you can:
 4. Get a personalized career roadmap
 5. Click "Get Job Recommendations" to fetch relevant jobs from multiple sources
 
-**Note**: 
+**Note**:
+
 - RemoteOK jobs work without any API key
 - Adzuna and Naukri jobs require respective API credentials in `.env` file
 
